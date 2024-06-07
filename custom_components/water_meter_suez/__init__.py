@@ -57,4 +57,5 @@ def get_water_meter_data(entry: ConfigEntry):
     total_volumes = [period['consumption']['totalVolume'] for period in data['periods']]
     
     return {
-        "total_volumes": total
+        "total_volumes": total_volumes
+    }
