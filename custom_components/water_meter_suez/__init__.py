@@ -1,7 +1,7 @@
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
-DOMAIN = "my_custom_integration"
+DOMAIN = "Water_meter_suez"
 
 async def async_setup(hass: HomeAssistant, config: dict):
     """Set up the My Custom Integration component."""
