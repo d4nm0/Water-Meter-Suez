@@ -1,0 +1,14 @@
+{
+    "domain": "Water_meter_suez",
+    "name": "Water Suez",
+    "codeowners": [
+        "@d4nm0"
+    ],
+    "config_flow": false,
+    "documentation": "https://github.com/d4nm0/Water-Meter-Suez",
+    "issue_tracker": "https://github.com/d4nm0/Water-Meter-Suez",
+    "integration_type": "device",
+    "iot_class": "calculated",
+    "quality_scale": "silver",
+    "version": "3.0.0"
+}
