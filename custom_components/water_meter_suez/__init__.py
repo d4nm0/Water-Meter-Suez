@@ -1,16 +1,22 @@
 """The Water Meter integration."""
 import asyncio
 from datetime import timedelta
-import requests
 import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+
+from .config_flow import WaterMeterConfigFlow
+from .coordinator import WaterMeterDataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = "water_meter"
+
+async def async_setup(hass: HomeAssistant, config: dict):
+    """Set up the Water Meter integration."""
+    hass.data.setdefault(DOMAIN, {})
+    return True
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Set up Water Meter from a config entry."""
@@ -23,39 +29,27 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     return True
 
-class WaterMeterDataUpdateCoordinator(DataUpdateCoordinator):
-    """Class to manage fetching data from the Water Meter."""
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
+    """Unload a config entry."""
+    unload_ok = await hass.config_entries.async_unload_platforms(entry, ["sensor"])
+    if unload_ok:
+        hass.data[DOMAIN].pop(entry.entry_id)
 
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry):
-        """Initialize the coordinator."""
-        self.entry = entry
-        super().__init__(
-            hass,
-            _LOGGER,
-            name=DOMAIN,
-            update_interval=timedelta(hours=1),  # Change the update interval as needed
-        )
+    return unload_ok
 
-    async def _async_update_data(self):
-        """Fetch data from the Water Meter."""
-        try:
-            return await hass.async_add_executor_job(get_water_meter_data, self.entry)
-        except Exception as err:
-            raise UpdateFailed(f"Error fetching data: {err}") from err
+async def async_migrate_entry(hass: HomeAssistant, entry):
+    """Migrate old entry data format."""
+    version = entry.version
 
-def get_water_meter_data(entry: ConfigEntry):
-    """Fetch water meter data from the API."""
-    url = "https://api.onconnect-coach.3slab.fr/v1/water-flow/api/monthly/period/2024/6/days?people=2&collectiveHotWater=0&outsideUse=1"
-    headers = {
-        'Authorization': f"Bearer {entry.data['api_token']}"
-    }
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    data = response.json()
-    
-    # Extract total volumes for the periods
-    total_volumes = [period['consumption']['totalVolume'] for period in data['periods']]
-    
-    return {
-        "total_volumes": total_volumes
-    }
+    _LOGGER.debug("Migrating from version %s", version)
+
+    # Migrate from version 1 to version 2
+    if version == 1:
+        # Migration code here if needed
+        entry.version = 2
+        entry.data = {
+            **entry.data,
+            # Add any additional fields needed for version 2
+        }
+
+    return True
