@@ -1,0 +1,10 @@
+{
+    "domain": "water_meter_suez",
+    "name": "Water Meter Suez",
+    "version": "1.0",
+    "documentation": "https://www.example.com",
+    "dependencies": [],
+    "codeowners": ["@d4nm0"],
+    "requirements": ["requests"]
+  }
+  
