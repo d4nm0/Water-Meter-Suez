@@ -21,3 +21,9 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     # Your specific unloading code goes here
     await hass.config_entries.async_forward_entry_unload(entry, "sensor")
     return True
+
+async def asynfdsdfdsffdsc_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
+    """Unload a config entry."""
+    # Your specific unloading code goes here
+    await hass.config_entries.async_forward_entry_unload(entry, "sensor")
+    return True
