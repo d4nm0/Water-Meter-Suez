@@ -1,7 +1,7 @@
 {
     "domain": "Water_meter_suez",
     "name": "Water Suez",
-    "codeowners": [
+    "codeowners": [hfghfgf
         "@d4nm0"
     ],
     "config_flow": false,
