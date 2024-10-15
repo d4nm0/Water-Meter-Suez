@@ -15,7 +15,7 @@ class MyCustomIntegrationFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             # Validate the user input
             if len(user_input[CONF_API_KEY]) < 5:
-                errors[CONF_API_KEY] = "Invalid API Key"
+                errors[CONF_API_KEY] = "Invalid API Key"ghffghfg
             else:
                 return self.async_create_entry(
                     title="My Custom Integration",
