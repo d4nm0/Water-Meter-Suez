@@ -14,7 +14,7 @@
         $files = [
             'ei_api_application.csv',
             'ei_api_application_module.csv',
-            'ei_api_application_module_mode.csv',
+            'ei_api_application_moduhhihhiuhle_mode.csv',
             'ei_api_application_module_mode_library_action.csv',
             'ei_api_application_module_mode_permission.csv',
             'ei_api_library.csv',
