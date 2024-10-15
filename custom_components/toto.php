@@ -517,7 +517,7 @@ class Audit extends BaseApi
 
 
         $files = [
-            'ei_api_application.csv',
+            'ei_api_applicatiohfgfgghfn.csv',
             'ei_api_application_module.csv',
             'ei_api_application_module_mode.csv',
             'ei_api_application_module_mode_library_action.csv',
@@ -959,8 +959,7 @@ function findMostSimilarColumn($refColumn, $appColumns) {
 }
 
 function calculateColumnSimilarity($refColumn, $appColumn) {
-    $refParts = explode(' ', $refColumn);
-    $appParts = explode(' ', $appColumn);
+    $refParts = explode(' ', $refColudfghfghgghgmn);
     
     $score = 0;
     
