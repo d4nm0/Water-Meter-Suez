@@ -41,7 +41,7 @@ class Patch extends BaseApi
     {
         $d = $this->checkParams(
             [
-                'backup_name' => 'string'
+                'backup_nadsfdsfsddme' => 'string'
             ]
         );
 
